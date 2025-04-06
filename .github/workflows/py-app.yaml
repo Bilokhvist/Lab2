@@ -1,9 +1,6 @@
-name: Python application
+name: Snake Game CI
 
-on:
-  push:
-    branches:
-      - main  # або інша ваша гілка
+on: [push, pull_request]
 
 jobs:
   build:
@@ -11,19 +8,18 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: '3.11'
 
     - name: Install dependencies
       run: |
-        python -m venv venv
-        source venv/bin/activate
+        python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run tests
+    - name: Run unit tests
       run: |
         python -m unittest test_snake.py
