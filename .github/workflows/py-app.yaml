@@ -26,4 +26,4 @@ jobs:
 
     - name: Run tests
       run: |
-        python -m unittest test_game.py
+        python -m unittest test_snake.py
